@@ -1,0 +1,65 @@
+.TH "upup" "1"
+.SH "NAME"
+upup
+.SH "SYNOPSIS"
+upup [-h] [-b] [-o outfile] [-f infile] [-t title] [-l cssfile]
+.SH "DESCRIPTION"
+upup - translate upup markup language to html
+.PP
+if [-f] is not specified, upup will read from stdin.
+.PP
+if [-o] is not specified, upup will write to stdout.
+.SH "USAGE"
+marks are automatically ended at '\\n'
+.PP
+marks include:
+.TP
+\'*\'
+for making the text bold
+.TP
+\'\-\'
+for crossing text out
+.TP
+\'_\'
+for making text italic
+.TP
+\'+\'
+for creating headers
+.TP
+\'~\'
+for code
+.TP
+\'^\'
+for horizontal rule
+
+.PP
+upup won't interpret a mark if there's a \'\\\' mark before it (it also applies to newlines).
+.SH "OPTIONS"
+.TP
+.BR \-b
+output bare html (this option overrides -t and -l)
+.TP
+.BR \-o  <filename>
+output to <filename> instead of stdout.
+.TP
+.BR \-f  <filename>
+read <filename> instead of stdin.
+.TP
+.BR \-t  <string>
+set websites title (html title tag in head).
+.TP
+.BR \-l  <filename>
+link css <filename> to html output
+.SH "EXAMPLE"
+*hi, im in bold, and i'm in _italic bold
+.PP
+~i didn't need to close these marks 'cause they close automatically on newline~
+.PP
+_but i *can* close them_
+.PP
+if i *don't close them and add a \\\\ sign at the end\\
+.PP
+effects are still present in next line B)
+
+.SH "AUTHOR"
+krzysztof michałczyk <admin@krzysckh.org> 2021

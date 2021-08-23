@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 			fprintf(outf, "<title> %s </title>\n", title);
 		}
 		if (cssln != NULL) {
-			fprintf(outf, "<link rel=\"sylesheet\" href=\"%s\">\n", cssln);
+			fprintf(outf, "<link rel=\"stylesheet\" href=\"%s\">\n", cssln);
 		}
 
 		fprintf(outf,
