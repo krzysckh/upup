@@ -5,7 +5,7 @@ PREFIX=/usr
 upup:
 	$(CC) upup.c -o upup $(CFLAGS)
 clean:
-	rm upup
+	rm upup example.html
 install: upup
 	cp upup $(PREFIX)/bin/upup
 	cp upup.1 $(PREFIX)/share/man/man1/upup.1
