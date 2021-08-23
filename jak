@@ -1,8 +1,0 @@
-fgetc po kolei, jeżeli "\\", pomiń kolejne jak szefito totalny
-"\\n" usuwa wszystkie modyfikacje
-* \- bold
-- \- przekreślone
-_ \- italic
-~ \- kod
-+ \- header
-^ \- hr

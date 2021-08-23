@@ -62,9 +62,15 @@ int main(int argc, char *argv[]) {
 		if (title != NULL) {
 			fprintf(outf, "<title> %s </title>\n", title);
 		}
-		fprintf(outf,
-				"
+		if (cssln != NULL) {
+			fprintf(outf, "<link rel=\"sylesheet\" href=\"%s\">\n", cssln);
+		}
 
+		fprintf(outf,
+				"</head>\n"
+				"<body>\n"
+		       );
+	}
 
 
 	while (c != EOF) {
@@ -148,7 +154,12 @@ int main(int argc, char *argv[]) {
 
 	}
 
-
+	if (!bare) {
+		fprintf(outf,
+				"</body>\n"
+				"</html>\n"
+		       );
+	}
 
 	return 0;
 }
