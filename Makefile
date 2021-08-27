@@ -2,6 +2,7 @@ CC=c99
 CFLAGS=-Wall
 PREFIX=/usr
 
+all: upup example
 upup:
 	$(CC) upup.c -o upup $(CFLAGS)
 clean:
