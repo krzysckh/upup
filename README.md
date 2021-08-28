@@ -6,9 +6,13 @@ upup is a tiny and minimal markup language.
 
 
 `git clone https://github.com/krzysckh/upup`
+
 `cd upup`
+
 `make`
+
 `make example`
+
 `sudo make install`
 
 # how to use
