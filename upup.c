@@ -97,11 +97,11 @@ int main(int argc, char *argv[]) {
 			marks.italic_open = "*";
 			marks.italic_close = "* ";
 			marks.header_open = "# ";
-			marks.header_close = "\n";
-			marks.code_open = "```\n";
-			marks.code_close = "```\n";
-			marks.hr = "<hr />";
-			marks.br = "<br />";
+			marks.header_close = "";
+			marks.code_open = "`";
+			marks.code_close = "`";
+			marks.hr = "---";
+			marks.br = "\n";
 
 			break;
 	}
@@ -163,7 +163,9 @@ int main(int argc, char *argv[]) {
 				if (code) { fprintf(outf, marks.code_close); code = false; }
 
 				fprintf(outf, marks.br);
-				fprintf(outf, "\n");
+				if (to == 0) {
+					fprintf(outf, "\n");
+				}
 				break;
 			case '*':
 				if (bold) {
