@@ -1,12 +1,11 @@
-CC=c99
-CFLAGS=-Wall
+CC=cc
+CFLAGS=-Wall -Wextra -std=c89
 PREFIX=/usr
 
-all: upup example
 upup:
 	$(CC) upup.c -o upup $(CFLAGS)
 clean:
-	rm upup example.html
+	rm upup
 install: upup
 	cp upup $(PREFIX)/bin/upup
 	cp upup.1 $(PREFIX)/share/man/man1/upup.1
