@@ -168,6 +168,7 @@ int main(int argc, char *argv[]) {
 				}
 				break;
 			case '*':
+				if (code) break;
 				if (bold) {
 					bold = !bold;
 					fprintf(outf, marks.bold_close);
@@ -176,6 +177,7 @@ int main(int argc, char *argv[]) {
 					bold = true;
 				} break;
 			case '-':
+				if (code) break;
 				if (crossed) {
 					crossed = !crossed;
 					fprintf(outf, marks.crossed_close);
@@ -184,6 +186,7 @@ int main(int argc, char *argv[]) {
 					crossed = true;
 				} break;
 			case '_':
+				if (code) break;
 				if (italic) {
 					italic = !italic;
 					fprintf(outf, marks.italic_close);
@@ -192,6 +195,7 @@ int main(int argc, char *argv[]) {
 					italic = true;
 				} break;
 			case '+':
+				if (code) break;
 				if (header) {
 					header = !header;
 					fprintf(outf, marks.header_close);
@@ -208,9 +212,11 @@ int main(int argc, char *argv[]) {
 					code = true;
 				} break;
 			case '^':
+				if (code) break;
 				fprintf(outf, marks.hr);
 				break;
 			case '{':
+				if (code) break;
 				switch (to) {
 					case 0:
 						fprintf(outf, "<img alt=\"img\" src=\"");
