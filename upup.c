@@ -210,6 +210,24 @@ int main(int argc, char *argv[]) {
 			case '^':
 				fprintf(outf, marks.hr);
 				break;
+			case '{':
+				switch (to) {
+					case 0:
+						fprintf(outf, "<img alt=\"img\" src=\"");
+						while ((c = fgetc(inf)) != '}') {
+							fputc(c, outf);
+						}
+						fprintf(outf, "\" />");
+						break;
+					case 1:
+						fprintf(outf, "![img](");
+						while ((c = fgetc(inf)) != '}') {
+							fputc(c, outf);
+						}
+						fprintf(outf, ")\n");
+						break;
+				}
+				break;
 			case EOF:
 				break;
 			default:
