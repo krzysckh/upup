@@ -7,6 +7,8 @@ typedef int bool;
 #define true 1
 #define false 0
 
+#define link_buff 1000
+
 struct template {
 	char *bold_open;
 	char *bold_close;
@@ -232,6 +234,35 @@ int main(int argc, char *argv[]) {
 						}
 						fprintf(outf, ")\n");
 						break;
+				}
+				break;
+			case '&':
+				if (code) break;
+				switch (to) {
+					case 0: ;
+							fprintf(outf, "<a href=\"");
+							while ((c = fgetc(inf)) != '[') {
+								fputc(c, outf);
+							} fprintf(outf, "\"> ");
+							while ((c = fgetc(inf)) != ']') {
+								fputc(c, outf);
+							} fprintf(outf, "</a>");
+							break;
+					case 1: ;
+							char link[link_buff];
+							int countl = 0, i = 0;
+
+							while ((c = fgetc(inf)) != '[') {
+								link[countl] = c;
+								countl++;
+							} fprintf(outf, "["); 
+							while ((c = fgetc(inf)) != ']') {
+								fputc(c, outf);
+							} 
+							fprintf(outf, "](");
+							for (i = 0; i < countl; i++) fputc(link[i], outf);
+							fprintf(outf, ") ");
+							break;
 				}
 				break;
 			case EOF:
