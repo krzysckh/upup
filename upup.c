@@ -129,7 +129,7 @@ int main(int argc, char *argv[]) {
 				fprintf(outf,
 						"<!DOCTYPE html>\n"
 						"<html>\n"
-						"<Head>\n"
+						"<head>\n"
 						"<meta charset=\"utf-8\">\n"
 				       );
 				if (title != NULL) {
