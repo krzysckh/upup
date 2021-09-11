@@ -100,8 +100,8 @@ int main(int argc, char *argv[]) {
 			marks.italic_close = "* ";
 			marks.header_open = "# ";
 			marks.header_close = "";
-			marks.code_open = "`";
-			marks.code_close = "`";
+			marks.code_open = "```";
+			marks.code_close = "```";
 			marks.hr = "---";
 			marks.br = "\n";
 
@@ -162,9 +162,11 @@ int main(int argc, char *argv[]) {
 				if (italic) { fprintf(outf, marks.italic_close); italic = false; }
 				if (crossed) { fprintf(outf, marks.crossed_close); crossed = false; }
 				if (header) { fprintf(outf, marks.header_close); header = false; }
-				if (code) { fprintf(outf, marks.code_close); code = false; }
+				/*if (code) { fprintf(outf, marks.code_close); code = false; }*/
+				if (!code) {
+					fprintf(outf, marks.br);
+				}
 
-				fprintf(outf, marks.br);
 				if (to == 0) {
 					fprintf(outf, "\n");
 				}
