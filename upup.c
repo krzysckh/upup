@@ -166,6 +166,9 @@ int main(int argc, char *argv[]) {
 				if (!code) {
 					fprintf(outf, marks.br);
 				}
+				if (to == 1 && code) {
+					fprintf(outf, "\n");
+				}
 
 				if (to == 0) {
 					fprintf(outf, "\n");
