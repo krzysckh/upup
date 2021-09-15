@@ -62,6 +62,8 @@ int main(int argc, char *argv[]) {
 					to = 0;
 				} else if (strcmp(optarg, "md") == 0 || strcmp(optarg, "markdown") == 0) {
 					to = 1;
+				} else if (strcmp(optarg, "ansi") == 0) {
+					to = 2;
 				} else {
 					fprintf(stderr, "%s is not a legal argument for -%c\n", optarg, opt);
 					return 1;
@@ -104,7 +106,20 @@ int main(int argc, char *argv[]) {
 			marks.code_close = "```";
 			marks.hr = "---";
 			marks.br = "\n";
-
+			break;
+		case 2: ;
+			marks.bold_open = "\033[1m";
+			marks.bold_close = "\033[22m";
+			marks.crossed_open = "\033[9m";
+			marks.crossed_close = "\033[29m";
+			marks.italic_open = "\033[3m";
+			marks.italic_close = "\033[23m";
+			marks.header_open = "\033[1m\033[3m\t ";
+			marks.header_close = "\033[22m\033[23m\n";
+			marks.code_open = "\033[3m";
+			marks.code_close = "\033[23m";
+			marks.hr = "----------\n";
+			marks.br = "\n";
 			break;
 	}
 
@@ -147,6 +162,9 @@ int main(int argc, char *argv[]) {
 			break;
 		case 1:
 			break;
+		case 2:
+			fprintf(outf, "\n");
+			break;
 	}
 
 
@@ -166,7 +184,7 @@ int main(int argc, char *argv[]) {
 				if (!code) {
 					fprintf(outf, marks.br);
 				}
-				if (to == 1 && code) {
+				if ((to == 1 && code) || (to == 2 && code)) {
 					fprintf(outf, "\n");
 				}
 
@@ -239,10 +257,21 @@ int main(int argc, char *argv[]) {
 						}
 						fprintf(outf, ")\n");
 						break;
+					case 2:
+						fprintf(outf, "%sIMAGE (", marks.bold_open);
+						while ((c = fgetc(inf)) != '}') {
+							fputc(c, outf);
+						}
+						fprintf(outf, ")%s", marks.bold_close);
+						break;
 				}
 				break;
 			case '&':
 				if (code) break;
+
+				char link[link_buff];
+				int countl = 0, i = 0;
+
 				switch (to) {
 					case 0: ;
 							fprintf(outf, "<a href=\"");
@@ -254,9 +283,6 @@ int main(int argc, char *argv[]) {
 							} fprintf(outf, "</a>");
 							break;
 					case 1: ;
-							char link[link_buff];
-							int countl = 0, i = 0;
-
 							while ((c = fgetc(inf)) != '[') {
 								link[countl] = c;
 								countl++;
@@ -267,6 +293,18 @@ int main(int argc, char *argv[]) {
 							fprintf(outf, "](");
 							for (i = 0; i < countl; i++) fputc(link[i], outf);
 							fprintf(outf, ") ");
+							break;
+					case 2: ;
+							while ((c = fgetc(inf)) != '[') {
+								link[countl] = c;
+								countl++;
+							}
+							while ((c = fgetc(inf)) != ']') {
+								fputc(c, outf);
+							} 
+							fprintf(outf, " %s(", marks.bold_open);
+							for (i = 0; i < countl; i++) fputc(link[i], outf);
+							fprintf(outf, ")%s ", marks.bold_close);
 							break;
 				}
 				break;
@@ -288,6 +326,9 @@ int main(int argc, char *argv[]) {
 				       );
 				break;
 			case 1:
+				break;
+			case 2:
+				fprintf(outf, "\n");
 				break;
 		}
 	}
