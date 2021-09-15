@@ -1,14 +1,13 @@
 # upup
 ![img](https://raw.githubusercontent.com/krzysckh/upup/master/upup.png)
 
-
 upup is a tiny and minimal markup language.
 
 # how to install
-```git clone https://github.com/krzysckh/upup
+```
+git clone https://github.com/krzysckh/upup
 cd upup
 make
-make example
 sudo make install
 ```
 

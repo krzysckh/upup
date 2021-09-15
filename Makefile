@@ -10,5 +10,3 @@ install: upup
 uninstall:
 	rm $(PREFIX)/bin/upup
 	rm $(PREFIX)/share/man/man1/upup.1
-example: upup
-	./upup -o example.html -f example.uu -l "http://krzysckh.org/style.css" -t "eggs :)"

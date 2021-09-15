@@ -1,0 +1,33 @@
+:root {
+	--bg: #4a403a;
+	--fg: #efefef;
+	--link: #a45d5d;
+	--addi: #ffc069;
+}
+html {
+	color: var(--fg);
+	font-family: monospace;
+	font-size: 15px;
+	background: var(--bg);
+	padding: 5%;
+}
+body {
+	max-width: 700px;
+	margin: 0 auto;
+	line-height: 1.3em;
+}
+a {
+	color: var(--link);
+	font-weight: 500;
+} 
+img {
+	border-radius: 5%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+code {
+	opacity: 80%;
+	font-style: italic;
+}
