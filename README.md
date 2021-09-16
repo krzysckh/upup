@@ -12,4 +12,4 @@ sudo make install
 ```
 
 # how to use
-please, take a look at ```upup(1)``` and ```example.uu```
+please, take a look at ```upup(1)``` and examples
