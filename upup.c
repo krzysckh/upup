@@ -24,8 +24,6 @@ struct template {
 	char *br;
 };
 
-
-
 int main(int argc, char *argv[]) {
 	bool bare = false;
 
@@ -43,7 +41,7 @@ int main(int argc, char *argv[]) {
 				bare = true;
 				break;
 			case 'h':
-				printf("usage: upup [args]\n");
+				printf("usage: upup [-f infile] [-o outfile] [-t title] [-l cssfile] [-T md/ansi/html] [-bh]\n");
 				return 0;
 			case 'o':
 				outn = optarg;
@@ -70,7 +68,7 @@ int main(int argc, char *argv[]) {
 				}
 				break;
 			default:
-				fprintf(stderr, "usage: upup [args]\n");
+				fprintf(stderr, "usage: upup [-f infile] [-o outfile] [-t title] [-l cssfile] [-T md/ansi/html] [-bh]\n");
 				return 1;
 		}
 	}
