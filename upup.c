@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
 
 	char c = 0;
 
-	bool bold = false, italic = false, crossed = false, header = false, code = false;
+	bool bold = false, italic = false, crossed = false, header = false;
 
 	switch (to) {
 		case 0:
@@ -178,20 +178,13 @@ int main(int argc, char *argv[]) {
 				if (italic) { fprintf(outf, marks.italic_close); italic = false; }
 				if (crossed) { fprintf(outf, marks.crossed_close); crossed = false; }
 				if (header) { fprintf(outf, marks.header_close); header = false; }
-				/*if (code) { fprintf(outf, marks.code_close); code = false; }*/
-				if (!code) {
-					fprintf(outf, marks.br);
-				}
-				if ((to == 1 && code) || (to == 2 && code)) {
-					fprintf(outf, "\n");
-				}
+				fprintf(outf, marks.br);
 
 				if (to == 0) {
 					fprintf(outf, "\n");
 				}
 				break;
 			case '*':
-				if (code) break;
 				if (bold) {
 					bold = !bold;
 					fprintf(outf, marks.bold_close);
@@ -200,7 +193,6 @@ int main(int argc, char *argv[]) {
 					bold = true;
 				} break;
 			case '-':
-				if (code) break;
 				if (crossed) {
 					crossed = !crossed;
 					fprintf(outf, marks.crossed_close);
@@ -209,7 +201,6 @@ int main(int argc, char *argv[]) {
 					crossed = true;
 				} break;
 			case '_':
-				if (code) break;
 				if (italic) {
 					italic = !italic;
 					fprintf(outf, marks.italic_close);
@@ -218,7 +209,6 @@ int main(int argc, char *argv[]) {
 					italic = true;
 				} break;
 			case '+':
-				if (code) break;
 				if (header) {
 					header = !header;
 					fprintf(outf, marks.header_close);
@@ -227,19 +217,16 @@ int main(int argc, char *argv[]) {
 					header = true;
 				} break;
 			case '~':
-				if (code) {
-					code = !code;
-					fprintf(outf, marks.code_close);
-				} else {
-					fprintf(outf, marks.code_open);
-					code = true;
-				} break;
+				fprintf(outf, marks.code_open);
+				while ((c = fgetc(inf)) != '~') {
+					fputc(c, outf);
+				}
+				fprintf(outf, marks.code_close);
+				break;
 			case '^':
-				if (code) break;
 				fprintf(outf, marks.hr);
 				break;
 			case '{':
-				if (code) break;
 				switch (to) {
 					case 0:
 						fprintf(outf, "<img alt=\"img\" src=\"");
@@ -265,8 +252,6 @@ int main(int argc, char *argv[]) {
 				}
 				break;
 			case '&':
-				if (code) break;
-
 				char link[link_buff];
 				int countl = 0, i = 0;
 
