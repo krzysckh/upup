@@ -251,7 +251,7 @@ int main(int argc, char *argv[]) {
 						break;
 				}
 				break;
-			case '&':
+			case '&': ;
 				char link[link_buff];
 				int countl = 0, i = 0;
 
