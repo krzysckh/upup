@@ -73,6 +73,9 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
+	if (argv[optind] != NULL) {
+		inn = argv[optind];
+	}
 	
 	struct template marks;
 
