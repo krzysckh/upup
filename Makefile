@@ -1,7 +1,7 @@
 CFLAGS=-Wall -Wextra -std=c89
 PREFIX=/usr
 
-upup: upup.c
+all: upup
 clean:
 	rm upup
 install: upup
