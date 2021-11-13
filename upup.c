@@ -177,11 +177,11 @@ int main(int argc, char *argv[]) {
 				fputc(fgetc(inf), outf);
 				break;
 			case '\n':
-				if (bold) { fprintf(outf, marks.bold_close); bold = false; }
-				if (italic) { fprintf(outf, marks.italic_close); italic = false; }
-				if (crossed) { fprintf(outf, marks.crossed_close); crossed = false; }
-				if (header) { fprintf(outf, marks.header_close); header = false; }
-				fprintf(outf, marks.br);
+				if (bold) { fprintf(outf, "%s", marks.bold_close); bold = false; }
+				if (italic) { fprintf(outf, "%s", marks.italic_close); italic = false; }
+				if (crossed) { fprintf(outf, "%s", marks.crossed_close); crossed = false; }
+				if (header) { fprintf(outf, "%s", marks.header_close); header = false; }
+				fprintf(outf, "%s", marks.br);
 
 				if (to == 0) {
 					fprintf(outf, "\n");
@@ -190,44 +190,44 @@ int main(int argc, char *argv[]) {
 			case '*':
 				if (bold) {
 					bold = !bold;
-					fprintf(outf, marks.bold_close);
+					fprintf(outf, "%s", marks.bold_close);
 				} else {
-					fprintf(outf, marks.bold_open);
+					fprintf(outf, "%s", marks.bold_open);
 					bold = true;
 				} break;
 			case '-':
 				if (crossed) {
 					crossed = !crossed;
-					fprintf(outf, marks.crossed_close);
+					fprintf(outf, "%s", marks.crossed_close);
 				} else {
-					fprintf(outf, marks.crossed_open);
+					fprintf(outf, "%s", marks.crossed_open);
 					crossed = true;
 				} break;
 			case '_':
 				if (italic) {
 					italic = !italic;
-					fprintf(outf, marks.italic_close);
+					fprintf(outf, "%s", marks.italic_close);
 				} else {
-					fprintf(outf, marks.italic_open);
+					fprintf(outf, "%s", marks.italic_open);
 					italic = true;
 				} break;
 			case '+':
 				if (header) {
 					header = !header;
-					fprintf(outf, marks.header_close);
+					fprintf(outf, "%s", marks.header_close);
 				} else {
-					fprintf(outf, marks.header_open);
+					fprintf(outf, "%s", marks.header_open);
 					header = true;
 				} break;
 			case '~':
-				fprintf(outf, marks.code_open);
+				fprintf(outf, "%s", marks.code_open);
 				while ((c = fgetc(inf)) != '~') {
 					fputc(c, outf);
 				}
-				fprintf(outf, marks.code_close);
+				fprintf(outf, "%s", marks.code_close);
 				break;
 			case '^':
-				fprintf(outf, marks.hr);
+				fprintf(outf, "%s", marks.hr);
 				break;
 			case '{':
 				switch (to) {
