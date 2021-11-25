@@ -263,7 +263,7 @@ int main(int argc, char *argv[]) {
 							fprintf(outf, "<a href=\"");
 							while ((c = fgetc(inf)) != '[') {
 								fputc(c, outf);
-							} fprintf(outf, "\"> ");
+							} fprintf(outf, "\">");
 							while ((c = fgetc(inf)) != ']') {
 								fputc(c, outf);
 							} fprintf(outf, "</a>");
