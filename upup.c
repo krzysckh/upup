@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include <stdio.h>
 #include <getopt.h> /* c99 so need to include that */
 #include <string.h> /* strcmp */
