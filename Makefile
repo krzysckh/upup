@@ -1,12 +1,16 @@
 CFLAGS=-Wall -Wextra -std=c89
 PREFIX=/usr
 
-all: upup
+%.gz: %
+	gzip -k $<
+
+all: upup upup.1.gz
+
 clean:
-	rm upup
-install: upup
-	cp upup $(PREFIX)/bin/upup
-	cp upup.1 $(PREFIX)/share/man/man1/upup.1
+	rm -rf upup upup.1.gz
+install: all
+	install -Dm755 -s upup -t $(PREFIX)/bin/
+	install -Dm644 upup.1.gz -t $(PREFIX)/share/man/man1/
 uninstall:
-	rm $(PREFIX)/bin/upup
-	rm $(PREFIX)/share/man/man1/upup.1
+	rm -rf $(PREFIX)/bin/upup
+	rm -rf $(PREFIX)/share/man/man1/upup.1.gz
