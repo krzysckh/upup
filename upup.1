@@ -2,7 +2,15 @@
 .SH NAME
 upup \- markup language
 .SH "SYNOPSIS"
-upup [-h] [-b] [-o outfile] [-f infile] [-t title] [-l cssfile] [-T md/html/ansi] <infile>
+.SY upup
+.OP \-h
+.OP \-b
+.OP \-o file
+.OP \-l file
+.OP \-t title
+.OP \-T format
+.RI [file]
+.YS
 .SH "DESCRIPTION"
 upup - upup markup language transpiler
 .PP
@@ -48,9 +56,6 @@ output bare html (this option overrides -t and -l)
 .B \-o  <filename>
 output to <filename> instead of stdout.
 .TP
-.B \-f  <filename>
-read <filename> instead of stdin.
-.TP
 .B \-t  <string>
 set websites title (html title tag in head).
 .TP
@@ -77,4 +82,4 @@ and images are *cool*
 you like cooking? you should go to &https://based.cooking[based.cooking] 'cause it's *epic*
 
 .SH "AUTHOR"
-krzysckh (github.com/krzysckh) 2021
+krzysckh (github.com/krzysckh) 2021 - 2022
