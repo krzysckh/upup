@@ -139,7 +139,7 @@ int main(int argc, char *argv[]) {
 			break;
 		case markdown:
 			mark.paragraph_open = "";
-			mark.paragraph_close = "\n";
+			mark.paragraph_close = "\n\n";
 			mark.bold_open = "**";
 			mark.bold_close = "** ";
 			mark.crossed_open = "~";
